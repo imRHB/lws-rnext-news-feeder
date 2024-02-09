@@ -1,10 +1,14 @@
+import Footer from "./components/Footer";
+import Header from "./components/header/Header";
+import NewsBoard from "./components/news/NewsBoard";
+
 function App() {
     return (
-        <main>
-            <h1 className="text-5xl font-bold text-center text-violet-500">
-                News Feeder
-            </h1>
-        </main>
+        <>
+            <Header />
+            <NewsBoard />
+            <Footer />
+        </>
     );
 }
 

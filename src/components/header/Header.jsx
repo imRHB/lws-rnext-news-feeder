@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../shared/Logo";
 import Date from "./Date";
 import FilterCategory from "./FilterCategory";

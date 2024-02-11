@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { NEWS_CATEGORIES } from "../../constants";
 import useNewsQuery from "../../hooks/useNewsQuery";
 

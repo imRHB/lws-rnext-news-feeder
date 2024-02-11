@@ -5,8 +5,10 @@ export default function useNewsQuery(category) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const baseUrl = "http://localhost:8000/v2/top-headlines";
-    const url = !category ? `${baseUrl}` : `${baseUrl}?category=${category}`;
+    const baseUrl = "http://localhost:8000/v2";
+    const url = !category
+        ? `${baseUrl}/top-headlines`
+        : `${baseUrl}/top-headlines?category=${category}`;
 
     const fetchNews = async () => {
         try {

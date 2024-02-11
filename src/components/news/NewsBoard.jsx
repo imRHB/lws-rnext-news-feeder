@@ -1,9 +1,11 @@
-import useNewsQuery from "../../hooks/useNewsQuery";
+import { useContext } from "react";
+
+import { NewsContext } from "../../context";
 import NewsLeft from "./NewsLeft";
 import NewsRight from "./NewsRight";
 
 export default function NewsBoard() {
-    const { isLoading, news } = useNewsQuery();
+    const { isLoading, news } = useContext(NewsContext);
 
     return (
         <main className="my-10 lg:my-14">

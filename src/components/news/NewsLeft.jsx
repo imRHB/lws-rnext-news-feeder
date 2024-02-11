@@ -1,25 +1,24 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
+
 import NewsItem from "./NewsItem";
 
-export default function NewsLeft() {
+export default function NewsLeft({ articles }) {
     return (
         <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
-            <div className="col-span-12 grid grid-cols-12 gap-4">
-                <NewsItem />
+            {articles?.map((article) => (
+                <React.Fragment key={article.title}>
+                    {article.description && <NewsItem article={article} />}
+                </React.Fragment>
+            ))}
+        </div>
+    );
+}
 
-                <div className="col-span-12 lg:col-span-8">
-                    <img
-                        className="w-full"
-                        src="./assets/thumb_lg.png"
-                        alt="thumb"
-                    />
-                    <p className="mt-5 text-base text-[#5C5955]">
-                        Illustration: Karolis Strautniekas
-                    </p>
-                </div>
-            </div>
+/* 
 
-            <div className="col-span-12 grid grid-cols-12 gap-4 lg:col-span-8">
+<div className="col-span-12 grid grid-cols-12 gap-4 lg:col-span-8">
                 <div className="col-span-12 md:col-span-6">
                     <a href="">
                         <h3 className="mb-2.5 text-xl font-bold lg:text-2xl">
@@ -152,6 +151,5 @@ export default function NewsLeft() {
                     <p className="mt-5 text-base text-[#94908C]">25 Feb 2021</p>
                 </div>
             </div>
-        </div>
-    );
-}
+
+*/

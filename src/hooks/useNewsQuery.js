@@ -1,47 +1,42 @@
 import { useEffect, useState } from "react";
 
-export default function useNewsQuery(category, searchTerm = "honda") {
+export default function useNewsQuery(url) {
     const [news, setNews] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const baseUrl = "http://localhost:8000/v2";
-    const url = !category
-        ? `${baseUrl}/top-headlines`
-        : `${baseUrl}/top-headlines?category=${category}`;
-
-    const url2 =
-        category && !searchTerm
-            ? `${baseUrl}/top-headlines?category=${category}`
-            : !category && searchTerm
-            ? `${baseUrl}/search?q=${searchTerm}`
-            : `${baseUrl}/top-headlines`;
-
-    const fetchNews = async () => {
-        try {
-            setIsLoading(true);
-
-            const response = await fetch(url2);
-            if (!response.ok) {
-                throw new Error("An unknown error occurred while fetching");
-            }
-            const newsData = await response.json();
-            setNews(newsData);
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
     useEffect(() => {
+        let isMounted = true;
+
+        const fetchNews = async () => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error("Could not fetch");
+                }
+                const data = await response.json();
+                if (isMounted) {
+                    setNews(data);
+                }
+            } catch (error) {
+                if (isMounted) {
+                    setError(error.message);
+                }
+            } finally {
+                setIsLoading(false);
+            }
+        };
         fetchNews();
-    }, []);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [url]);
 
     return {
-        error,
         news,
         isLoading,
+        error,
     };
 }
 

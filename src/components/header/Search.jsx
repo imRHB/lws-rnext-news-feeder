@@ -1,32 +1,54 @@
 import { useState } from "react";
+
 import useDebounce from "../../hooks/useDebounce";
+import useNewsQuery from "../../hooks/useNewsQuery";
 
 const magnify = "/assets/icons/search.svg";
 
 export default function Search() {
     const [searchTerm, setSearchTerm] = useState("");
 
-    const doSearch = useDebounce((searchValue) => {
-        console.log(searchValue);
+    const url = searchTerm
+        ? `${import.meta.env.VITE_BASE_API_URL}/search?q=${searchTerm}`
+        : `${import.meta.env.VITE_BASE_API_URL}/top-headlines`;
+
+    const dbQuery = useDebounce((searchValue) => {
+        setSearchTerm(searchValue);
+        console.log("searchValue:::", searchValue);
     }, 500);
 
-    function handleSearchNews() {
+    const handleSearchNews = () => {
+        event.preventDefault();
+
+        setSearchTerm(event.target.value);
+        dbQuery(event.target.value);
+    };
+
+    const { news } = useNewsQuery(url);
+
+    /* const doSearch = useDebounce(() => {
+        fetchData();
+    }, 500); */
+
+    /* function handleSearchNews() {
         event.preventDefault();
 
         const searchValue = event.target.value;
         setSearchTerm(searchValue);
         doSearch(searchValue);
-    }
+    } */
 
-    function handleSubmit() {
+    /* function handleSubmit() {
         event.preventDefault();
 
-        console.log(searchTerm);
-    }
+        setSearchTerm(event.target.value);
+    } */
+
+    console.log("news:::", news);
 
     return (
         <div className="flex items-center space-x-3 lg:space-x-8">
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="flex">
                     <div className="relative overflow-hidden rounded-lg text-gray-500 md:min-w-[380px] lg:min-w-[440px]">
                         <input

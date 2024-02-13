@@ -3,7 +3,13 @@ import { useContext } from "react";
 import { NewsActionContext } from "../../context";
 
 export default function FilterCategory() {
-    const { NEWS_CATEGORIES, setCategory } = useContext(NewsActionContext);
+    const { NEWS_CATEGORIES, setCategory, setSearchTerm } =
+        useContext(NewsActionContext);
+
+    function handleCategories(category) {
+        setSearchTerm("");
+        setCategory(category);
+    }
 
     return (
         <div className="container mx-auto mt-6">
@@ -12,7 +18,7 @@ export default function FilterCategory() {
                     <li
                         key={category}
                         className="capitalize"
-                        onClick={() => setCategory(category)}
+                        onClick={() => handleCategories(category)}
                     >
                         <a href="#">{category}</a>
                     </li>

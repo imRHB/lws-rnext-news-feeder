@@ -1,5 +1,3 @@
-import React from "react";
-
 const logo = "/assets/logo.png";
 
 export default function Logo() {

@@ -41,7 +41,7 @@ export default function Search() {
         <div className="flex items-center space-x-3 lg:space-x-8">
             <form onSubmit={handleSubmit}>
                 <div className="flex">
-                    <div className="relative overflow-hidden rounded-lg text-gray-500 md:min-w-[380px] lg:min-w-[440px]">
+                    <div className="relative overflow-hidden rounded-lg text-gray-500 md:min-w-[300px]">
                         <input
                             type="text"
                             className="z-20 block w-full bg-gray-100 px-4 py-2 pr-10 focus:outline-gray-300 rounded-lg transition"

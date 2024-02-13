@@ -1,3 +1,5 @@
+import getDate from "../../lib/getDate";
+
 export default function Date() {
     return (
         <div className="flex items-center space-x-4">
@@ -51,7 +53,7 @@ export default function Date() {
                     strokeLinejoin="round"
                 />
             </svg>
-            <span>Thursday, February 25, 2021</span>
+            <span>{getDate()}</span>
         </div>
     );
 }

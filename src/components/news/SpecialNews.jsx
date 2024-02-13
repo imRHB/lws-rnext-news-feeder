@@ -3,7 +3,7 @@
 import getDate from "../../lib/getDate";
 
 export default function SpecialNews({ specialNews, image = true }) {
-    const { author, description, publishedAt, source, title, urlToImage } =
+    const { description, publishedAt, source, title, urlToImage } =
         specialNews || {};
 
     return (
@@ -27,10 +27,8 @@ export default function SpecialNews({ specialNews, image = true }) {
                     <img className="w-full" src={urlToImage} alt="thumb" />
                     {source?.name && (
                         <p className="mt-5 text-base text-[#5C5955]">
-                            <span className="italic font-semibold">
-                                Source:{" "}
-                            </span>
-                            {source.name}
+                            Source:{" "}
+                            <span className="italic">{source.name}</span>
                         </p>
                     )}
                 </div>

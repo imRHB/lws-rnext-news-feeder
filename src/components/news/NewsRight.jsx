@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import arraySplitter from "../../lib/arraySplitter";
-import NewsItemRight from "./NewsItemRight";
+import NewsItem from "./NewsItem";
 import SpecialNews from "./SpecialNews";
 
 export default function NewsRight({ articles }) {
@@ -25,7 +25,7 @@ export default function NewsRight({ articles }) {
                 </div>
 
                 {[...secondArray, ...thirdArray].map((article) => (
-                    <NewsItemRight key={article.title} article={article} />
+                    <NewsItem key={article.title} article={article} />
                 ))}
             </div>
         </div>

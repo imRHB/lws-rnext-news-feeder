@@ -10,6 +10,8 @@ export default function useNewsQuery(url, type) {
 
         const fetchNews = async () => {
             try {
+                setIsLoading(true);
+
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error("Could not fetch");

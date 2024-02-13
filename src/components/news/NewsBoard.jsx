@@ -1,7 +1,12 @@
+import { useContext } from "react";
+
+import { NewsContext } from "../../context";
 import NewsRight from "./NewsRight";
 
 export default function NewsBoard() {
-    const isLoading = false;
+    const { isLoading, news } = useContext(NewsContext);
+
+    console.log("news:::", news);
 
     return (
         <main className="my-10 lg:my-14">

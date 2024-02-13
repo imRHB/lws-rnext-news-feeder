@@ -1,7 +1,26 @@
 /* eslint-disable react/prop-types */
 
-import { NewsContext } from "../context";
+import { useContext } from "react";
+
+import { NewsActionContext, NewsContext } from "../context";
+import useNewsQuery from "../hooks/useNewsQuery";
 
 export default function NewsProvider({ children }) {
-    return <NewsContext.Provider value={{}}>{children}</NewsContext.Provider>;
+    const { category, searchTerm } = useContext(NewsActionContext);
+
+    const url = searchTerm
+        ? `${import.meta.env.VITE_BASE_API_URL}/search?q=${searchTerm}`
+        : category
+        ? `${
+              import.meta.env.VITE_BASE_API_URL
+          }/top-headlines?category=${category}`
+        : `${import.meta.env.VITE_BASE_API_URL}/top-headlines`;
+
+    const { error, isLoading, news } = useNewsQuery(url);
+
+    return (
+        <NewsContext.Provider value={{ error, isLoading, news }}>
+            {children}
+        </NewsContext.Provider>
+    );
 }

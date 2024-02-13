@@ -1,12 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 
-import { NEWS_CATEGORIES } from "../../constants";
-import useNewsQuery from "../../hooks/useNewsQuery";
+import { NewsActionContext } from "../../context";
 
 export default function FilterCategory() {
-    const [category, setCategory] = useState(undefined);
-
-    useNewsQuery(category);
+    const { NEWS_CATEGORIES, setCategory } = useContext(NewsActionContext);
 
     return (
         <div className="container mx-auto mt-6">

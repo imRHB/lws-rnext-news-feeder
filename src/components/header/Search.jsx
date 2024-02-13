@@ -1,20 +1,15 @@
-import { useState } from "react";
+import { useContext } from "react";
 
+import { NewsActionContext } from "../../context";
 import useDebounce from "../../hooks/useDebounce";
-import useNewsQuery from "../../hooks/useNewsQuery";
 
 const magnify = "/assets/icons/search.svg";
 
 export default function Search() {
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const url = searchTerm
-        ? `${import.meta.env.VITE_BASE_API_URL}/search?q=${searchTerm}`
-        : `${import.meta.env.VITE_BASE_API_URL}/top-headlines`;
+    const { searchTerm, setSearchTerm } = useContext(NewsActionContext);
 
     const dbQuery = useDebounce((searchValue) => {
         setSearchTerm(searchValue);
-        console.log("searchValue:::", searchValue);
     }, 500);
 
     const handleSearchNews = () => {
@@ -23,8 +18,6 @@ export default function Search() {
         setSearchTerm(event.target.value);
         dbQuery(event.target.value);
     };
-
-    const { news } = useNewsQuery(url);
 
     /* const doSearch = useDebounce(() => {
         fetchData();
@@ -43,8 +36,6 @@ export default function Search() {
 
         setSearchTerm(event.target.value);
     } */
-
-    console.log("news:::", news);
 
     return (
         <div className="flex items-center space-x-3 lg:space-x-8">

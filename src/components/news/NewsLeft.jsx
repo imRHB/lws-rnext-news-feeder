@@ -8,7 +8,7 @@ export default function NewsLeft({ articles }) {
     return (
         <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
             {articles?.map((article) => (
-                <React.Fragment key={article.title}>
+                <React.Fragment key={`${article.title}-${article.publishedAt}`}>
                     {article.description && <NewsItem article={article} />}
                 </React.Fragment>
             ))}

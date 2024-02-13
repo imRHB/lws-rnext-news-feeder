@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useNewsQuery(url) {
+export default function useNewsQuery(url, type) {
     const [news, setNews] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -16,7 +16,10 @@ export default function useNewsQuery(url) {
                 }
                 const data = await response.json();
                 if (isMounted) {
-                    setNews(data);
+                    /* type checking: cause, we are getting the data inside RESULT while calling search endpoint, other case getting the data inside ARTICLES. directly storing only the data array, that's enough for our case */
+                    type === "search"
+                        ? setNews(data.result)
+                        : setNews(data.articles);
                 }
             } catch (error) {
                 if (isMounted) {
@@ -31,7 +34,7 @@ export default function useNewsQuery(url) {
         return () => {
             isMounted = false;
         };
-    }, [url]);
+    }, [url, type]);
 
     return {
         news,
@@ -39,60 +42,3 @@ export default function useNewsQuery(url) {
         error,
     };
 }
-
-/* 
-
-const fetchNews = async (condUrl) => {
-        const response = await fetch(condUrl);
-        if (!response.ok) {
-            throw new Error("An unknown error occurred while fetching");
-        }
-
-        return response.json();
-    };
-
-    const fetchNewsConditionally = async () => {
-        try {
-            setIsLoading(true);
-            let data;
-
-            if (!type || !payload) {
-                console.log("invalid type");
-                throw new Error("Invalid type and payload provided");
-            }
-
-            switch (type) {
-                case "category":
-                    console.log("category:::", type);
-                    data = await fetchNews(
-                        `${baseUrl}/top-headlines?category=${payload}`
-                    );
-
-                    setNews(data?.articles);
-                    break;
-
-                case "search":
-                    console.log("search:::", type);
-                    data = await fetchNews(`${baseUrl}/search?q=${payload}`);
-
-                    setNews(data?.result);
-                    break;
-
-                default:
-                    console.log("default:::", type);
-                    data = await fetchNews(`${baseUrl}/top-headlines`);
-
-                    setNews(data?.articles);
-            }
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchNewsConditionally();
-    }, []);
-
-*/

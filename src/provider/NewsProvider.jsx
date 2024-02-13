@@ -16,7 +16,10 @@ export default function NewsProvider({ children }) {
           }/top-headlines?category=${category}`
         : `${import.meta.env.VITE_BASE_API_URL}/top-headlines`;
 
-    const { error, isLoading, news } = useNewsQuery(url);
+    const { error, isLoading, news } = useNewsQuery(
+        url,
+        searchTerm ? "search" : category ? "category" : null
+    );
 
     return (
         <NewsContext.Provider value={{ error, isLoading, news }}>

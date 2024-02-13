@@ -15,6 +15,7 @@ export default function useNewsQuery(url, type) {
                     throw new Error("Could not fetch");
                 }
                 const data = await response.json();
+
                 if (isMounted) {
                     /* type checking: cause, we are getting the data inside RESULT while calling search endpoint, other case getting the data inside ARTICLES. directly storing only the data array, that's enough for our case */
                     type === "search"

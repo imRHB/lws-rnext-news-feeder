@@ -2,14 +2,14 @@
 
 import getDate from "../../lib/getDate";
 
-export default function NewsItem({ article }) {
-    let { description, publishedAt, title } = article || {};
+export default function NewsItemRight({ article }) {
+    const { title, description, publishedAt } = article || {};
 
     return (
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+        <div className="col-span-12 md:col-span-8">
             <div className="col-span-12 md:col-span-4">
                 <a href="#">
-                    <h3 className="mb-2.5 text-xl font-bold lg:text-2xl">
+                    <h3 className="mb-2.5 text-xl font-bold lg:text-[20px]">
                         {title}
                     </h3>
                 </a>

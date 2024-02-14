@@ -1,12 +1,10 @@
-import { useContext } from "react";
-
-import { NewsActionContext } from "../../context";
+import { useNewsActionContext } from "../../hooks";
 import useDebounce from "../../hooks/useDebounce";
 
 const magnify = "/assets/icons/search.svg";
 
 export default function Search() {
-    const { setSearchTerm } = useContext(NewsActionContext);
+    const { setSearchTerm } = useNewsActionContext();
 
     const debouncedSetSearchTerm = useDebounce((searchValue) => {
         setSearchTerm(searchValue);
@@ -23,16 +21,14 @@ export default function Search() {
                 <span className="sr-only">Search</span>
             </div>
 
-            <form>
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Search news"
-                    className="block w-full bg-gray-50 text-gray-600 px-4 py-3 pl-12 focus:outline-gray-100 focus:bg-transparent rounded-lg transition"
-                    onChange={handleSearch}
-                    required
-                />
-            </form>
+            <input
+                type="text"
+                name="search"
+                placeholder="Search news"
+                className="block w-full bg-gray-50 text-gray-600 px-4 py-3 pl-12 focus:outline-gray-200 focus:bg-transparent rounded-lg transition"
+                onChange={handleSearch}
+                required
+            />
         </div>
     );
 }

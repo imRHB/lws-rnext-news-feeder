@@ -1,6 +1,4 @@
-import { useContext } from "react";
-
-import { NewsContext } from "../../context";
+import { useNewsContext } from "../../hooks";
 import arraySplitter from "../../lib/arraySplitter";
 import Message from "../shared/Message";
 import NewsItemSkeleton from "../shared/NewsItemSkeleton";
@@ -8,7 +6,7 @@ import NewsLeft from "./NewsLeft";
 import NewsRight from "./NewsRight";
 
 export default function NewsBoard() {
-    const { error, isLoading, news } = useContext(NewsContext);
+    const { error, isLoading, news } = useNewsContext();
 
     const filteredNews = news.filter((item) => item.description !== null);
 
@@ -61,7 +59,7 @@ export default function NewsBoard() {
             <div className="flex justify-center min-h-[30vh]">
                 <Message
                     type="info"
-                    title="No news found!"
+                    title="Not found!"
                     description="We didn't find any news for you!"
                 />
             </div>

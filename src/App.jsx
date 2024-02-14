@@ -1,3 +1,5 @@
+import React from "react";
+
 import Footer from "./components/Footer";
 import Header from "./components/header/Header";
 import NewsBoard from "./components/news/NewsBoard";
@@ -6,13 +8,15 @@ import NewsProvider from "./provider/NewsProvider";
 
 function App() {
     return (
-        <NewsActionProvider>
-            <NewsProvider>
-                <Header />
-                <NewsBoard />
-                <Footer />
-            </NewsProvider>
-        </NewsActionProvider>
+        <React.Fragment>
+            <NewsActionProvider>
+                <NewsProvider>
+                    <Header />
+                    <NewsBoard />
+                </NewsProvider>
+            </NewsActionProvider>
+            <Footer />
+        </React.Fragment>
     );
 }
 

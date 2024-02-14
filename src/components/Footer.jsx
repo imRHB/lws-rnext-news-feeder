@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Footer() {
     return (
         <footer className="bg-neutral-800 pb-8 pt-20 text-white sm:pt-24">
@@ -139,8 +137,8 @@ export default function Footer() {
                                 actual economic news.
                             </h3>
                             <p className="mt-2 text-sm leading-6">
-                                All the day's headlines and highlights, direct
-                                to you every morning..
+                                All the day&apos;s headlines and highlights,
+                                direct to you every morning..
                             </p>
                         </div>
 

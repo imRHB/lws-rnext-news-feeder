@@ -1,6 +1,4 @@
-import { useContext } from "react";
-
-import { NewsActionContext } from "../../context";
+import { useNewsActionContext } from "../../hooks";
 
 export default function FilterCategory() {
     const {
@@ -9,9 +7,9 @@ export default function FilterCategory() {
         setCategory,
         searchTerm,
         setSearchTerm,
-    } = useContext(NewsActionContext);
+    } = useNewsActionContext();
 
-    function handleCategories(category) {
+    function handleCategory(category) {
         setSearchTerm("");
         setCategory(category);
     }
@@ -23,14 +21,14 @@ export default function FilterCategory() {
                     <li
                         key={catItem}
                         className="capitalize"
-                        onClick={() => handleCategories(catItem)}
+                        onClick={() => handleCategory(catItem)}
                     >
                         <a
                             href="#"
                             className={`${
                                 catItem === category &&
                                 !searchTerm &&
-                                "text-green-500"
+                                "text-[#00d991]"
                             }`}
                         >
                             {catItem}

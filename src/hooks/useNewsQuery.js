@@ -14,19 +14,20 @@ export default function useNewsQuery(url, type) {
 
                 const response = await fetch(url);
                 if (!response.ok) {
-                    throw new Error("Could not fetch");
+                    const { detail } = await response.json();
+                    throw new Error(detail);
                 }
                 const data = await response.json();
 
                 if (isMounted) {
-                    /* type checking: cause, we are getting the data inside RESULT while calling search endpoint, other case getting the data inside ARTICLES. directly storing only the data array, that's enough for our case */
+                    /* ENDPOINT CHECKING: we are getting the actual data inside RESULT while hitting `/search` endpoint, for `/top-headlines*` getting the actual data inside ARTICLES. that's why I'm storing only actual data array as NEWS */
                     type === "search"
                         ? setNews(data.result)
                         : setNews(data.articles);
                 }
             } catch (error) {
                 if (isMounted) {
-                    setError(error.message);
+                    setError(error);
                 }
             } finally {
                 setIsLoading(false);

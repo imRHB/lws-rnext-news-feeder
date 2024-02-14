@@ -11,7 +11,7 @@ export default function NewsLeft({ specialNews, articles }) {
             {specialNews && <SpecialNews specialNews={specialNews} />}
 
             {articles?.map((article) => (
-                <React.Fragment key={`${article.title}-${article.publishedAt}`}>
+                <React.Fragment key={article.title}>
                     {article.description && <NewsItem article={article} />}
                 </React.Fragment>
             ))}

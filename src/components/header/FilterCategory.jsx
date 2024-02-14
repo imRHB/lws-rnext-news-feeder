@@ -3,8 +3,13 @@ import { useContext } from "react";
 import { NewsActionContext } from "../../context";
 
 export default function FilterCategory() {
-    const { NEWS_CATEGORIES, setCategory, setSearchTerm } =
-        useContext(NewsActionContext);
+    const {
+        NEWS_CATEGORIES,
+        category,
+        setCategory,
+        searchTerm,
+        setSearchTerm,
+    } = useContext(NewsActionContext);
 
     function handleCategories(category) {
         setSearchTerm("");
@@ -14,13 +19,22 @@ export default function FilterCategory() {
     return (
         <div className="container mx-auto mt-6">
             <ul className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
-                {NEWS_CATEGORIES.map((category) => (
+                {NEWS_CATEGORIES.map((catItem) => (
                     <li
-                        key={category}
+                        key={catItem}
                         className="capitalize"
-                        onClick={() => handleCategories(category)}
+                        onClick={() => handleCategories(catItem)}
                     >
-                        <a href="#">{category}</a>
+                        <a
+                            href="#"
+                            className={`${
+                                catItem === category &&
+                                !searchTerm &&
+                                "text-green-500"
+                            }`}
+                        >
+                            {catItem}
+                        </a>
                     </li>
                 ))}
             </ul>

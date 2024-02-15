@@ -5,11 +5,7 @@ import NewsImage from "../shared/NewsImage";
 import NewsItem from "./NewsItem";
 
 export default function NewsRight({ articles }) {
-    console.log("articles:::", articles);
-
     const { firstItem, secondArray, thirdArray } = arraySplitter(articles);
-
-    console.log(firstItem, secondArray, thirdArray);
 
     return (
         <div className="col-span-12 self-start xl:col-span-4">

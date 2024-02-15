@@ -1,6 +1,5 @@
 export default function arraySplitter(originalArray) {
-    // Create a copy of the original array
-    const clonedArray = [...originalArray];
+    const clonedArray = originalArray.slice();
 
     // Find the first item with a non-null 'urlToImage' property
     let firstItem = clonedArray.find((item) => item.urlToImage !== null);
@@ -13,18 +12,25 @@ export default function arraySplitter(originalArray) {
     }
 
     // Remove the first item from the array copy
-    clonedArray.splice(index, 1);
+    const removedItem = clonedArray.splice(index, 1)[0];
 
     // Calculate the number of elements for the second array
-    const secondItemCount = Math.floor((clonedArray.length - 1) * 0.6);
+    let secondItemCount;
+    if (clonedArray.length === 2) {
+        secondItemCount = 1;
+    } else {
+        secondItemCount = Math.max(
+            1,
+            Math.floor((clonedArray.length - 1) * 0.7)
+        );
+    }
 
     // Split the array into second and third arrays
-    const secondArray = clonedArray.slice(1, 1 + secondItemCount);
-    const thirdArray = clonedArray.slice(1 + secondItemCount);
+    const secondArray = clonedArray.slice(0, secondItemCount);
+    const thirdArray = clonedArray.slice(secondItemCount);
 
-    // Return the result
     return {
-        firstItem,
+        firstItem: removedItem,
         secondArray,
         thirdArray,
     };

@@ -29,17 +29,3 @@ export default function CoverNews({ coverNews }) {
         </div>
     );
 }
-
-/* 
-
-<div className="col-span-12 lg:col-span-8">
-                    <img className="w-full" src={urlToImage} alt="thumb" />
-                    {source?.name && (
-                        <p className="mt-5 text-base text-[#5C5955]">
-                            Source:{" "}
-                            <span className="italic">{source.name}</span>
-                        </p>
-                    )}
-                </div>
-
-*/

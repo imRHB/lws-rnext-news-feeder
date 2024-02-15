@@ -7,7 +7,7 @@ import NewsItem from "./NewsItem";
 
 export default function NewsLeft({ coverNews, articles }) {
     /* checking the image that exist below of the cover section */
-    const imageToShow = articles.length >= 1 && articles[0].urlToImage;
+    const imageToShow = articles.length >= 1 && articles[0]?.urlToImage;
 
     return (
         <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
@@ -18,7 +18,7 @@ export default function NewsLeft({ coverNews, articles }) {
                     <NewsItem article={article} />
 
                     {/* rendering only image, if the urlToImage is matched with imageToShow */}
-                    {imageToShow && imageToShow === article.urlToImage && (
+                    {imageToShow && imageToShow === article?.urlToImage && (
                         <NewsImage urlToImage={imageToShow} />
                     )}
                 </React.Fragment>

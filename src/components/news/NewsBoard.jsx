@@ -86,7 +86,7 @@ export default function NewsBoard() {
         content = (
             <div className="container mx-auto grid grid-cols-12 gap-8">
                 <NewsLeft coverNews={coverNews} articles={secondArray} />
-                <NewsRight articles={thirdArray} />
+                {thirdArray?.length > 0 && <NewsRight articles={thirdArray} />}
             </div>
         );
     }

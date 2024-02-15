@@ -5,7 +5,11 @@ import NewsImage from "../shared/NewsImage";
 import NewsItem from "./NewsItem";
 
 export default function NewsRight({ articles }) {
+    console.log("articles:::", articles);
+
     const { firstItem, secondArray, thirdArray } = arraySplitter(articles);
+
+    console.log(firstItem, secondArray, thirdArray);
 
     return (
         <div className="col-span-12 self-start xl:col-span-4">
@@ -13,7 +17,7 @@ export default function NewsRight({ articles }) {
                 {/* removed divide class from the upper div to NewsItem to make dynamic */}
                 <div className="col-span-12 mb-6 md:col-span-8 space-y-6">
                     {/* if firstItem exists, then rendering only image on the right-top side image like as template */}
-                    {firstItem && (
+                    {firstItem?.urlToImage && (
                         <NewsImage urlToImage={firstItem.urlToImage} />
                     )}
                 </div>
@@ -21,9 +25,9 @@ export default function NewsRight({ articles }) {
                 {/* except coverNews, rest of the news are rendering */}
                 {[firstItem, ...secondArray, ...thirdArray].map((article) => (
                     <NewsItem
-                        key={article.title}
+                        key={article?.title}
                         article={article}
-                        border={article.urlToImage !== firstItem.urlToImage}
+                        border={article?.urlToImage !== firstItem?.urlToImage}
                     />
                 ))}
             </div>

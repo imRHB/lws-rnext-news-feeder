@@ -1,6 +1,6 @@
 export default function arraySplitter(originalArray) {
     // Create a copy of the original array
-    const clonedArray = originalArray.slice();
+    const clonedArray = [...originalArray];
 
     // Find the first item with a non-null 'urlToImage' property
     let firstItem = clonedArray.find((item) => item.urlToImage !== null);

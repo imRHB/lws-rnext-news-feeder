@@ -8,11 +8,22 @@ import NewsRight from "./NewsRight";
 export default function NewsBoard() {
     const { error, isLoading, news } = useNewsContext();
 
-    let filteredNews = news.filter(
+    /* remove duplicates */
+    const deduplicatedNewsItems = {};
+
+    const deduplicatedNews = news.filter((nItem) => {
+        if (!deduplicatedNewsItems[nItem.title]) {
+            deduplicatedNewsItems[nItem.title] = true;
+            return true;
+        }
+        return false;
+    });
+
+    let filteredNews = deduplicatedNews.filter(
         (item) =>
-            item.title != null &&
-            item.description != null &&
-            item.urlToImage != null
+            item.title !== null &&
+            item.description !== null &&
+            item.urlToImage !== null
     );
 
     const {
@@ -49,7 +60,7 @@ export default function NewsBoard() {
             <div className="flex justify-center min-h-[50vh]">
                 <Message
                     type="error"
-                    title="Failed!"
+                    title="Error!"
                     description={
                         error?.message ??
                         "An unknown error occurred! Could not fetch the news!"

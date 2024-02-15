@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
 import arraySplitter from "../../lib/arraySplitter";
+import CoverNews from "./CoverNews";
 import NewsItem from "./NewsItem";
-import SpecialNews from "./SpecialNews";
 
 export default function NewsRight({ articles }) {
     const { firstItem, secondArray, thirdArray } = arraySplitter(articles);
@@ -20,7 +20,7 @@ export default function NewsRight({ articles }) {
                     )}
 
                     {firstItem && (
-                        <SpecialNews specialNews={firstItem} image={false} />
+                        <CoverNews coverNews={firstItem} image={false} />
                     )}
                 </div>
 

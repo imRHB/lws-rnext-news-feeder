@@ -2,9 +2,9 @@
 
 import getDate from "../../lib/getDate";
 
-export default function SpecialNews({ specialNews, image = true }) {
+export default function CoverNews({ coverNews, image = true }) {
     const { description, publishedAt, source, title, urlToImage } =
-        specialNews || {};
+        coverNews || {};
 
     return (
         <div className="col-span-12 grid grid-cols-12 gap-4">
@@ -22,7 +22,7 @@ export default function SpecialNews({ specialNews, image = true }) {
                 </div>
             </div>
 
-            {image && (
+            {image && urlToImage && (
                 <div className="col-span-12 lg:col-span-8">
                     <img className="w-full" src={urlToImage} alt="thumb" />
                     {source?.name && (

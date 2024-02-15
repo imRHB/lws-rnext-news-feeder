@@ -14,8 +14,10 @@ export default function useNewsQuery(url, type) {
 
                 const response = await fetch(url);
                 if (!response.ok) {
-                    const { detail } = await response.json();
-                    throw new Error(detail);
+                    // const { detail } = await response.json();
+                    throw new Error(
+                        "Something went wrong, data fetching failed! Please try again later!"
+                    );
                 }
                 const data = await response.json();
 

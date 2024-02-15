@@ -11,7 +11,7 @@ export default function NewsBoard() {
     const filteredNews = news.filter((item) => item.description !== null);
 
     const {
-        firstItem: specialNews,
+        firstItem: coverNews,
         secondArray,
         thirdArray,
     } = arraySplitter(filteredNews);
@@ -27,7 +27,7 @@ export default function NewsBoard() {
                             key={num}
                             className="col-span-12 md:col-span-6 lg:col-span-4"
                         >
-                            <NewsItemSkeleton image={num === 2} />
+                            <NewsItemSkeleton image={num === 3 || num === 5} />
                         </div>
                     ))}
                 </div>
@@ -41,13 +41,13 @@ export default function NewsBoard() {
 
     if (!isLoading && error) {
         content = (
-            <div className="flex justify-center min-h-[30vh]">
+            <div className="flex justify-center min-h-[50vh]">
                 <Message
                     type="error"
-                    title="Failed to fetch!"
+                    title="Failed!"
                     description={
                         error?.message ??
-                        "Something went wrong, data fetching failed! Please try again later!"
+                        "An unknown error occurred! Could not fetch the news!"
                     }
                 />
             </div>
@@ -56,7 +56,7 @@ export default function NewsBoard() {
 
     if (!isLoading && !error && filteredNews.length <= 0) {
         content = (
-            <div className="flex justify-center min-h-[30vh]">
+            <div className="flex justify-center min-h-[50vh]">
                 <Message
                     type="info"
                     title="Not found!"
@@ -69,7 +69,7 @@ export default function NewsBoard() {
     if (!isLoading && !error && filteredNews.length > 0) {
         content = (
             <div className="container mx-auto grid grid-cols-12 gap-8">
-                <NewsLeft specialNews={specialNews} articles={secondArray} />
+                <NewsLeft coverNews={coverNews} articles={secondArray} />
                 <NewsRight articles={thirdArray} />
             </div>
         );

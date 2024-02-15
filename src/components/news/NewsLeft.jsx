@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import React from "react";
-
 import CoverNews from "./CoverNews";
 import NewsItem from "./NewsItem";
 
@@ -13,11 +11,11 @@ export default function NewsLeft({ coverNews, articles }) {
             {coverNews && <CoverNews coverNews={coverNews} />}
 
             {articles?.map((article) => (
-                <React.Fragment key={article.title}>
-                    {article.description && (
-                        <NewsItem article={article} imageToShow={imageToShow} />
-                    )}
-                </React.Fragment>
+                <NewsItem
+                    key={article.title}
+                    article={article}
+                    imageToShow={imageToShow}
+                />
             ))}
         </div>
     );

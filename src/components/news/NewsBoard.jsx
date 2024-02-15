@@ -8,7 +8,12 @@ import NewsRight from "./NewsRight";
 export default function NewsBoard() {
     const { error, isLoading, news } = useNewsContext();
 
-    const filteredNews = news.filter((item) => item.description !== null);
+    let filteredNews = news.filter(
+        (item) =>
+            item.title != null &&
+            item.description != null &&
+            item.urlToImage != null
+    );
 
     const {
         firstItem: coverNews,
